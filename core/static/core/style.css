@@ -1,0 +1,21 @@
+.skill-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 3px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+.skill-tag.matched {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+.skill-tag.missing {
+    background-color: #f8d7da;
+    color: #842029;
+}
+.score-card {
+    border-radius: 10px;
+}
+.hero {
+    padding: 60px 0;
+}

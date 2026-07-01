@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Resume Analyzer — Home{% endblock %}
+{% block content %}
+<div class="hero text-center">
+    <h1 class="display-5 fw-bold">Know if your resume beats the ATS</h1>
+    <p class="lead text-muted">Upload your resume, paste a job description, and get a score,
+        matched/missing skills, an ATS compatibility check, and concrete suggestions.</p>
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">Get Started</a>
+    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg">Login</a>
+</div>
+{% endblock %}

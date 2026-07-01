@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-5">
+        <h4>Upload a Resume</h4>
+        <form method="post" action="{% url 'upload_resume' %}" enctype="multipart/form-data" class="mb-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ upload_form.file }}
+                <div class="form-text">PDF only, max 5MB.</div>
+                {% for error in upload_form.file.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Upload & Continue</button>
+        </form>
+    </div>
+
+    <div class="col-md-7">
+        <h4>Your Resumes</h4>
+        {% if resumes %}
+            <ul class="list-group">
+                {% for resume in resumes %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ resume.original_filename }}</strong>
+                            <div class="text-muted small">Uploaded {{ resume.uploaded_at|date:"M d, Y H:i" }}</div>
+                        </div>
+                        <div>
+                            <a href="{% url 'analyze' resume.id %}" class="btn btn-sm btn-outline-primary">Analyze</a>
+                            <form action="{% url 'delete_resume' resume.id %}" method="post" class="d-inline"
+                                  onsubmit="return confirm('Delete this resume?');">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No resumes uploaded yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
