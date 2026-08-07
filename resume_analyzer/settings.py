@@ -7,10 +7,18 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- Security ---
-SECRET_KEY = config('SECRET_KEY', default='dev-secret-key-change-this-in-production')
-DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS=resume-analyzer-2-ds05.onrender.com
-DEBUG=False
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="dev-secret-key-change-this-in-production"
+)
+
+DEBUG = config("DEBUG", default=False, cast=bool)
+
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default="127.0.0.1,localhost",
+    cast=lambda v: [host.strip() for host in v.split(",")]
+)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
