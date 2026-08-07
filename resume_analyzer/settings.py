@@ -9,8 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --- Security ---
 SECRET_KEY = config('SECRET_KEY', default='dev-secret-key-change-this-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost', cast=lambda v: [s.strip() for s in v.split(',')])
-
+ALLOWED_HOSTS=resume-analyzer-2-ds05.onrender.com
+DEBUG=False
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
