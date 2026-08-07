@@ -6,6 +6,11 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CSRF_TRUSTED_ORIGINS = config(
+    "CSRF_TRUSTED_ORIGINS",
+    default="",
+    cast=lambda v: [origin.strip() for origin in v.split(",") if origin.strip()]
+)
 # --- Security ---
 SECRET_KEY = config(
     "SECRET_KEY",
